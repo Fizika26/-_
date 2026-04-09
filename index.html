@@ -307,6 +307,8 @@
       <div class="task-nav">
         <button type="button" class="nav-btn active" data-target="1">1</button>
         <button type="button" class="nav-btn" data-target="2">2</button>
+        <button type="button" class="nav-btn" data-target="3">3</button>
+        <button type="button" class="nav-btn" data-target="4">4</button>
         <button type="button" class="nav-btn" data-target="5">5</button>
         <button type="button" class="nav-btn" data-target="6">6</button>
         <button type="button" class="nav-btn" data-target="7">7</button>
@@ -334,14 +336,43 @@
           <div class="text">
             Вычислите значение выражения:
             <br><br>
-            <div style="text-align:center;">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAA...REPLACED_BASE64..." alt="Задание 2" style="max-width:100%; border:1px solid #999; padding:8px; background:white;">
-              <div style="font-size:13px;color:#666;margin-top:6px;">Если изображение не отображается, положите файл task2.png рядом с html‑файлом</div>
-            </div>
+            <div id="task2Image" style="text-align:center; margin-top:10px;"></div>
           </div>
           <div class="answer-box">
             <label for="answer2">Ответ:</label>
             <input id="answer2" name="answer_2" type="text" />
+          </div>
+        </div>
+      </section>
+
+      <section class="task" data-task="3" data-answer="18">
+        <div class="num">3</div>
+        <div class="content">
+          <div class="rule">Ответ на задание запишите в виде целого числа.</div>
+          <div class="text">
+            Вычислите значение выражения:
+            <br><br>
+            <div id="task3Image" style="text-align:center; margin-top:10px;"></div>
+          </div>
+          <div class="answer-box">
+            <label for="answer3">Ответ:</label>
+            <input id="answer3" name="answer_3" type="text" />
+          </div>
+        </div>
+      </section>
+
+      <section class="task" data-task="4" data-answer="-1,8">
+        <div class="num">4</div>
+        <div class="content">
+          <div class="rule">Ответ на задание запишите в виде числа.</div>
+          <div class="text">
+            На рисунке изображены графики функций <i>f(x)</i> = <i>k</i> / (<i>x</i> − <i>a</i>) и <i>g(x)</i> = <i>px</i> + <i>b</i>, которые пересекаются в точках A(2; 1) и B(<i>x</i><sub>B</sub>; <i>y</i><sub>B</sub>). Найдите <i>x</i><sub>B</sub>.
+            <br><br>
+            <div id="task4Image" style="text-align:center; margin-top:10px;"></div>
+          </div>
+          <div class="answer-box">
+            <label for="answer4">Ответ:</label>
+            <input id="answer4" name="answer_4" type="text" inputmode="decimal" />
           </div>
         </div>
       </section>
@@ -407,7 +438,7 @@
       <div class="hidden-fields">
         <input type="hidden" name="student_name" id="studentNameField" />
         <input type="hidden" name="correct_count" id="correctCountField" />
-        <input type="hidden" name="total_count" id="totalCountField" value="6" />
+        <input type="hidden" name="total_count" id="totalCountField" value="8" />
         <input type="hidden" name="percentage" id="percentageField" />
         <input type="hidden" name="answers_summary" id="answersSummaryField" />
         <input type="hidden" name="time_spent" id="timeSpentField" />
@@ -417,14 +448,56 @@
     </form>
 
     <div class="final-screen" id="finalScreen">
-      <h2>Работа завершена</h2>
-      <p>Ответы отправлены. Ниже показан итог без правильных ответов.</p>
-      <div class="result-card" id="resultCard"></div>
+      <h2>Результат</h2>
+      <div id="resultCard"></div>
+      <div id="resultTable"></div>
     </div>
   </div>
 
   <script>
     const TASK_DURATION_SECONDS = 50 * 60;
+
+    function renderTask2Image() {
+      const container = document.getElementById('task2Image');
+      if (!container) return;
+
+      container.innerHTML = `
+        <svg viewBox="0 0 1100 420" style="max-width:100%; height:auto; border:1px solid #999; background:#fff; padding:8px;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1100" height="420" fill="white"/>
+          <text x="70" y="170" font-size="150" font-family="Times New Roman, serif">14</text>
+          <text x="250" y="105" font-size="92" font-family="Times New Roman, serif">6,4</text>
+          <text x="520" y="170" font-size="150" font-family="Times New Roman, serif">·</text>
+          <text x="620" y="170" font-size="150" font-family="Times New Roman, serif">7</text>
+          <text x="760" y="105" font-size="92" font-family="Times New Roman, serif">−5,4</text>
+          <line x1="60" y1="215" x2="1010" y2="215" stroke="black" stroke-width="4"/>
+          <text x="470" y="375" font-size="160" font-family="Times New Roman, serif">2</text>
+          <text x="620" y="305" font-size="92" font-family="Times New Roman, serif">4,4</text>
+        </svg>
+      `;
+    }
+
+    function renderTask3Image() {
+      const container = document.getElementById('task3Image');
+      if (!container) return;
+
+      container.innerHTML = `
+        <svg viewBox="0 0 900 220" style="max-width:100%; height:auto; border:1px solid #999; background:#fff; padding:8px;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="900" height="220" fill="white"/>
+          <text x="40" y="140" font-size="90" font-family="Times New Roman, serif">−18√2 sin ( −135° )</text>
+        </svg>
+      `;
+    }
+
+    function renderTask4Image() {
+      const container = document.getElementById('task4Image');
+      if (!container) return;
+
+      container.innerHTML = `
+        <div style="text-align:center">
+          <img src="task4.png" style="max-width:100%; border:1px solid #999; padding:8px; background:white;">
+        </div>
+      `;
+    }
 
     const startScreen = document.getElementById('startScreen');
     const mainScreen = document.getElementById('quizForm');
@@ -439,6 +512,10 @@
     const quizForm = document.getElementById('quizForm');
     const tasks = [...document.querySelectorAll('.task')];
     const navButtons = [...document.querySelectorAll('.nav-btn')];
+
+    renderTask2Image();
+    renderTask3Image();
+    renderTask4Image();
 
     let timeLeft = TASK_DURATION_SECONDS;
     let timerInterval = null;
@@ -516,7 +593,34 @@
 
       mainScreen.classList.remove('show');
       finalScreen.classList.add('show');
-      resultCard.innerHTML = `Верно: ${results.correctCount} из ${results.totalCount}. Процент выполнения: ${results.percentage}%.<span class="small"></span>`;
+      resultCard.innerHTML = `Верно: ${results.correctCount} из ${results.totalCount}. Процент выполнения: ${results.percentage}%`; 
+
+      const table = document.getElementById('resultTable');
+      let tableHTML = `<table style="width:100%;border-collapse:collapse;margin-top:20px">
+      <tr style="background:#f0f0f0">
+      <th style="border:1px solid #999;padding:8px">Задание</th>
+      <th style="border:1px solid #999;padding:8px">Ваш ответ</th>
+      <th style="border:1px solid #999;padding:8px">Результат</th>
+      </tr>`;
+
+      tasks.forEach(task => {
+        const number = task.dataset.task;
+        const input = task.querySelector('input');
+        const userAnswer = normalize(input.value);
+        const correctAnswer = normalize(task.dataset.answer);
+        const isCorrect = userAnswer !== '' && userAnswer === correctAnswer;
+
+        tableHTML += `<tr>
+        <td style="border:1px solid #999;padding:8px;text-align:center">${number}</td>
+        <td style="border:1px solid #999;padding:8px;text-align:center">${userAnswer || '-'}</td>
+        <td style="border:1px solid #999;padding:8px;text-align:center;font-weight:700;color:${isCorrect ? 'green' : 'red'}">
+        ${isCorrect ? 'Верно' : 'Неверно'}
+        </td>
+        </tr>`;
+      });
+
+      tableHTML += `</table>`;
+      table.innerHTML = tableHTML;
       finalScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
       try {
